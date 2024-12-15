@@ -1,0 +1,14 @@
+﻿
+
+@model IEnumerable<BanQuanAo.Models.SanPham>
+@foreach (var item in Model)
+{
+	<li class="span3">
+		<div class="product-box">
+			<a href="product_detail.html"><img alt="" src="@Url.Content("quanao/"+item.AnhDaiDien)" style="height:300px"></a><br>
+			<a href="product_detail.html" class="title">@item.TenSanPham</a><br>
+			<a href="#" class="category">@item.MoTaNgan</a>
+			<p class="price">@item.GiaNhap</p>
+		</div>
+	</li>
+}

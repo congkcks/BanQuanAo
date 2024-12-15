@@ -1,0 +1,25 @@
+﻿<section class="navbar main-menu">
+	<div class="navbar-inner main-menu">
+		<a href="index.html" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
+		<nav id="menu" class="pull-right">
+			<ul>
+				@foreach (var item in ViewBag.DanhSachMeNu)
+                {
+					<li>
+						<a href="#" class="danhsachchinh">@item.PhanLoaiChinh.PhanLoaiChinh</a>
+						<ul>
+							@foreach(var item1 in item.DanhSachPhanLoaiPhu)
+                            {
+                                <li><a href="#" class="danhsachphu">@item1.TenPhanLoaiPhu</a></li>
+                            }
+						</ul>
+					</li>
+                }
+			</ul>
+		</nav>
+	</div>
+</section>
+<section class="header_text sub">
+	<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products">
+	<h4><span>New products</span></h4>
+</section>
