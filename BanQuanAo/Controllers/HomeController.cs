@@ -1,5 +1,6 @@
 ﻿using BanQuanAo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PagedList;
 using System.Diagnostics;
@@ -78,7 +79,58 @@ namespace BanQuanAo.Controllers
 			return PartialView("SanPham", sanpham);
 			
 		}
-		public IActionResult Privacy()
+		[Route("/12")]
+
+      public IActionResult ThemSanPham()
+       {
+        var PhanLoaiChinh = _context.PhanLoais.ToList();
+        var danhsachphanloaiphu = _context.PhanLoaiPhus.ToList();
+        var danhsachmenu = new List<PhanTong>();
+
+        foreach (var item in PhanLoaiChinh)
+        {
+            var phantong = new PhanTong();
+            phantong.PhanLoaiChinh = item;
+            phantong.DanhSachPhanLoaiPhu = danhsachphanloaiphu.Where(p => p.MaPhanLoai == item.MaPhanLoai).ToList();
+            danhsachmenu.Add(phantong);
+        }
+        ViewBag.DanhSachMenu = danhsachmenu;
+
+        // Chuyển đổi thành SelectList
+        ViewBag.MaPhanLoai = new SelectList(PhanLoaiChinh, "MaPhanLoai", "PhanLoaiChinh");
+        ViewBag.MaPhanLoaiPhu = new SelectList(danhsachphanloaiphu, "MaPhanLoaiPhu", "TenPhanLoaiPhu");
+
+        return View();
+       }
+		[HttpPost]
+		public IActionResult ThemSanPham(SanPham sanpham)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.SanPhams.Add(sanpham);
+				_context.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			var PhanLoaiChinh = _context.PhanLoais.ToList();
+			var danhsachphanloaiphu = _context.PhanLoaiPhus.ToList();
+			var danhsachmenu = new List<PhanTong>();
+
+			foreach (var item in PhanLoaiChinh)
+			{
+				var phantong = new PhanTong();
+				phantong.PhanLoaiChinh = item;
+				phantong.DanhSachPhanLoaiPhu = danhsachphanloaiphu.Where(p => p.MaPhanLoai == item.MaPhanLoai).ToList();
+				danhsachmenu.Add(phantong);
+			}
+			ViewBag.DanhSachMenu = danhsachmenu;
+
+			// Chuyển đổi thành SelectList
+			ViewBag.MaPhanLoai = new SelectList(PhanLoaiChinh, "MaPhanLoai", "PhanLoaiChinh");
+			ViewBag.MaPhanLoaiPhu = new SelectList(danhsachphanloaiphu, "MaPhanLoaiPhu", "TenPhanLoaiPhu");
+			return View(sanpham);
+		}
+
+        public IActionResult Privacy()
 		{
 			return View();
 		}

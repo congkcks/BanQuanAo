@@ -1,0 +1,91 @@
+﻿@model BanQuanAo.Models.SanPham
+
+@{
+    ViewData["Title"] = "ThemSanPham";
+    Layout = "~/Views/Shared/Layoutbai.cshtml";
+}
+<style>
+    #themsp{
+        position:relative;
+        left: 30%;
+    }
+
+    .control-label{
+        font-size: 300;
+    }
+
+    .form-control{
+        width: 50%;
+    }
+</style>
+
+<section class="main-content">
+    <div class="row" id="themsp">
+        <div class="col-12">
+            <form asp-action="ThemSanPham" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MaSanPham" class="control-label"></label>
+                    <input asp-for="MaSanPham" class="form-control" />
+                    <span asp-validation-for="MaSanPham" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TenSanPham" class="control-label"></label>
+                    <input asp-for="TenSanPham" class="form-control" />
+                    <span asp-validation-for="TenSanPham" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaPhanLoai" class="control-label"></label>
+                    <select asp-for="MaPhanLoai" class="form-control" asp-items="ViewBag.MaPhanLoai"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GiaNhap" class="control-label"></label>
+                    <input asp-for="GiaNhap" class="form-control" />
+                    <span asp-validation-for="GiaNhap" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DonGiaBanNhoNhat" class="control-label"></label>
+                    <input asp-for="DonGiaBanNhoNhat" class="form-control" />
+                    <span asp-validation-for="DonGiaBanNhoNhat" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DonGiaBanLonNhat" class="control-label"></label>
+                    <input asp-for="DonGiaBanLonNhat" class="form-control" />
+                    <span asp-validation-for="DonGiaBanLonNhat" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TrangThai" class="control-label"></label>
+                    <input asp-for="TrangThai" class="form-control" />
+                    <span asp-validation-for="TrangThai" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MoTaNgan" class="control-label"></label>
+                    <input asp-for="MoTaNgan" class="form-control" />
+                    <span asp-validation-for="MoTaNgan" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnhDaiDien" class="control-label"></label>
+                    <input asp-for="AnhDaiDien" class="form-control" />
+                    <span asp-validation-for="AnhDaiDien" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NoiBat" class="control-label"></label>
+                    <input asp-for="NoiBat" class="form-control" />
+                    <span asp-validation-for="NoiBat" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaPhanLoaiPhu" class="control-label"></label>
+                    <select asp-for="MaPhanLoaiPhu" class="form-control" asp-items="ViewBag.MaPhanLoaiPhu"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+</section>
